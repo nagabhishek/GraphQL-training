@@ -15,19 +15,21 @@ var booksList = [
     id: '1',
     name: 'Wings Of Fire',
     category: 'Autobiography',
+    authorId: '1',
   },
   {
     id: '2',
     name: 'India 2020',
     category: 'Inspirational',
+    authorId: '1',
   },
   {
     id: '3',
-    name: 'Mrtyunjay',
+    name: 'Mrutyunjay',
     category: 'Inspirational',
+    authorId: '2',
   },
 ];
-
 var authorsList = [
   { id: '1', name: 'Dr. APJ Abdul Kalam', age: 70 },
   { id: '2', name: 'Shivaji Sawant', age: 75 },
@@ -40,6 +42,13 @@ const BookType = new GraphQLObjectType({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
     category: { type: GraphQLString },
+    author: {
+      type: AuthorType,
+      resolve(parent, args) {
+        console.log(parent);
+        return authorsList.find((a) => a.id == parent.authorId);
+      },
+    },
   }),
 });
 

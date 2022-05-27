@@ -12,5 +12,5 @@ app.use(
 );
 
 app.listen(4000, () => {
-  console.log('Server running @ 4000 !');
+  console.log('Server running at 4000 !');
 });

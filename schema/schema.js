@@ -164,6 +164,13 @@ const BookType = new GraphQLObjectType({
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
+    author: {
+      type: AuthorType,
+      args: { id: { type: GraphQLID } },
+      resolve(parent, args) {
+        return authorsList.find((a) => a.id == args.id);
+      },
+    },
     authors: {
       type: new GraphQLList(AuthorType),
       resolve(parent, args) {

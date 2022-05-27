@@ -30,6 +30,7 @@ var booksList = [
     authorId: '2',
   },
 ];
+
 var authorsList = [
   { id: '1', name: 'Dr. APJ Abdul Kalam', age: 70 },
   { id: '2', name: 'Shivaji Sawant', age: 75 },
@@ -58,6 +59,12 @@ const AuthorType = new GraphQLObjectType({
     id: { type: GraphQLID },
     name: { type: GraphQLString },
     age: { type: GraphQLInt },
+    books: {
+      type: new GraphQLList(BookType),
+      resolve(parent, args) {
+        return booksList.filter((book) => book.authorId === parent.id);
+      },
+    },
   }),
 });
 
@@ -85,7 +92,7 @@ const RootQuery = new GraphQLObjectType({
       resolve(parent, args) {
         // code to get data (from database)
         // console.log(typeof args.id);
-        return authorsList.find((b) => b.id == args.id);
+        return authorsList.find((a) => a.id == args.id);
       },
     },
   },
@@ -98,20 +105,42 @@ module.exports = new GraphQLSchema({
 // graphql query
 
 /*
-// query
-//1.
+-------------------------------------------- Book with id ------------
 {
-  book(id:"1"){
-    name   
-  }
-}
-// 2.
-{
-  book(id:"1"){
+    book(id:"1"){
+        name
+    }
+--------------------------------------------- Author with id (GraphQLID) -----------
+    author(id:1){
+        name
+    }
+-------------------------------------------- Collection ------------
+    {
+        books{
+            name
+        }
+    }
+---------------------------------------- Nesting -------------
+   {
+  book(id:1){
     name
     category
-    id
+    author{
+      name
+    }
   }
 }
+-------------------------------- Find books written by an author -------
+{
+  author(id:1){
+    name
+    books{
+      name
+      category
+    }
+  }
+}
+
+
 
 */

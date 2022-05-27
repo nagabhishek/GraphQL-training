@@ -219,23 +219,26 @@ module.exports = new GraphQLSchema({
 // graphql query
 
 /*
--------------------------------------------- Book with id ------------
+--------------------------Book with id-------------------------------
 {
     book(id:"1"){
-        name
+      name
     }
---------------------------------------------- Author with id (GraphQLID) -----------
-    author(id:1){
-        name
-    }
--------------------------------------------- Collection ------------
-    {
-        books{
-            name
-        }
-    }
----------------------------------------- Nesting -------------
-   {
+}
+--------------------------Author with id (GraphQLID)-----------------  
+{
+  author(id:1){
+    name
+  }
+}
+---------------------------Collection--------------------------------
+{
+  books{
+      name
+  }
+}
+---------------------------Nesting-----------------------------------
+{
   book(id:1){
     name
     category
@@ -244,7 +247,7 @@ module.exports = new GraphQLSchema({
     }
   }
 }
--------------------------------- Find books written by an author -------
+--------------------------Find books written by an author------------
 {
   author(id:1){
     name
@@ -254,7 +257,7 @@ module.exports = new GraphQLSchema({
     }
   }
 }
-------------------------------------------
+--------------------------Mutation (Add Trainer)-------------------
 {
   trainer(id:1){
     name
@@ -265,7 +268,7 @@ module.exports = new GraphQLSchema({
     }
   }
 }
-------------------------------------
+--------------------------Mutation (Add Author)--------------------
 mutation{
   addAuthor(id:5,name:"Sudha Murty",age:60){
     name
@@ -273,15 +276,12 @@ mutation{
   }
 }
 
-------------------------------------  Mutation (Add Book) ---------------
+--------------------------Mutation (Add Book)-----------------------
 
 mutation{
   addBook(id:4,name:"Three Thousand Stitches",category:"Inspirational",authorId:"5"){
     name
   }
 }
-
-
-
 
 */

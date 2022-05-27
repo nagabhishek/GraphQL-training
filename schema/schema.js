@@ -68,6 +68,27 @@ var trainersList = [
   { id: 3, name: 'Rachana Ranade', age: 32, isMCT: true },
 ];
 
+var booksList = [
+  {
+    id: '1',
+    name: 'Wings Of Fire',
+    category: 'Autobiography',
+    authorId: '1',
+  },
+  {
+    id: '2',
+    name: 'India 2020',
+    category: 'Inspirational',
+    authorId: '1',
+  },
+  {
+    id: '3',
+    name: 'Mrutyunjay',
+    category: 'Inspirational',
+    authorId: '2',
+  },
+];
+
 var authorsList = [
   { id: '1', name: 'Dr. APJ Abdul Kalam', age: 70 },
   { id: '2', name: 'Shivaji Sawant', age: 75 },
@@ -143,6 +164,12 @@ const BookType = new GraphQLObjectType({
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
+    authors: {
+      type: new GraphQLList(AuthorType),
+      resolve(parent, args) {
+        return authorsList;
+      },
+    },
     course: {
       type: CourseType,
       args: { id: { type: GraphQLID } },

@@ -11,7 +11,7 @@ const {
 } = graphql;
 
 //dummy data
-var courseList = [
+const courseList = [
   {
     id: 1,
     title: 'React',
@@ -62,13 +62,13 @@ var courseList = [
   },
 ];
 
-var trainersList = [
+const trainersList = [
   { id: 1, name: 'Sumeet Wajpe', age: 38, isMCT: true },
   { id: 2, name: 'Gulshan Sachdev', age: 45, isMCT: false },
   { id: 3, name: 'Rachana Ranade', age: 32, isMCT: true },
 ];
 
-var booksList = [
+const booksList = [
   {
     id: '1',
     name: 'Wings Of Fire',
@@ -89,7 +89,7 @@ var booksList = [
   },
 ];
 
-var authorsList = [
+const authorsList = [
   { id: '1', name: 'Dr. APJ Abdul Kalam', age: 70 },
   { id: '2', name: 'Shivaji Sawant', age: 75 },
   { id: '3', name: 'Ranjit Desai', age: 50 },

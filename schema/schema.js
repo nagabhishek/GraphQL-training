@@ -212,8 +212,8 @@ const Mutation = new GraphQLObjectType({
 });
 
 module.exports = new GraphQLSchema({
-  query: RootQuery,
-  mutation: Mutation,
+  query: RootQuery, //Fetching record
+  mutation: Mutation, // Adding new record
 });
 
 // graphql query

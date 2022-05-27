@@ -68,6 +68,12 @@ var trainersList = [
   { id: 3, name: 'Rachana Ranade', age: 32, isMCT: true },
 ];
 
+var authorsList = [
+  { id: '1', name: 'Dr. APJ Abdul Kalam', age: 70 },
+  { id: '2', name: 'Shivaji Sawant', age: 75 },
+  { id: '3', name: 'Ranjit Desai', age: 50 },
+];
+
 const CourseType = new GraphQLObjectType({
   name: 'Course',
   fields: () => ({
@@ -258,7 +264,7 @@ module.exports = new GraphQLSchema({
   }
 }
 --------------------------Mutation (Add Trainer)-------------------
-{
+mutation{
   trainer(id:1){
     name
     courses{
@@ -277,7 +283,6 @@ mutation{
 }
 
 --------------------------Mutation (Add Book)-----------------------
-
 mutation{
   addBook(id:4,name:"Three Thousand Stitches",category:"Inspirational",authorId:"5"){
     name

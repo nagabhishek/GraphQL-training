@@ -103,6 +103,37 @@ const TrainerType = new GraphQLObjectType({
   }),
 });
 
+const AuthorType = new GraphQLObjectType({
+  name: 'Author',
+  fields: () => ({
+    id: { type: GraphQLID },
+    name: { type: GraphQLString },
+    age: { type: GraphQLInt },
+    books: {
+      type: new GraphQLList(BookType),
+      resolve(parent, args) {
+        return booksList.filter((book) => book.authorId === parent.id);
+      },
+    },
+  }),
+});
+
+const BookType = new GraphQLObjectType({
+  name: 'Book',
+  fields: () => ({
+    id: { type: GraphQLID },
+    name: { type: GraphQLString },
+    category: { type: GraphQLString },
+    author: {
+      type: AuthorType,
+      resolve(parent, args) {
+        console.log(parent);
+        return authorsList.find((a) => a.id == parent.authorId);
+      },
+    },
+  }),
+});
+
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
@@ -137,8 +168,52 @@ const RootQuery = new GraphQLObjectType({
   },
 });
 
+const Mutation = new GraphQLObjectType({
+  name: 'Mutation',
+  fields: {
+    addAuthor: {
+      type: AuthorType,
+      args: {
+        id: { type: GraphQLID },
+        name: { type: GraphQLString },
+        age: { type: GraphQLInt },
+      },
+      resolve(parent, args) {
+        let newAuthor = {
+          id: args.id,
+          name: args.name,
+          age: args.age,
+        };
+        authorsList.push(newAuthor);
+        console.log(authorsList.length);
+        return newAuthor;
+      },
+    },
+    addBook: {
+      type: BookType,
+      args: {
+        id: { type: GraphQLID },
+        name: { type: GraphQLString },
+        category: { type: GraphQLString },
+        authorId: { type: GraphQLID },
+      },
+      resolve(parent, args) {
+        let newBook = {
+          id: args.id,
+          name: args.name,
+          category: args.category,
+          authorId: args.authorId,
+        };
+        booksList.push(newBook);
+        return newBook;
+      },
+    },
+  },
+});
+
 module.exports = new GraphQLSchema({
   query: RootQuery,
+  mutation: Mutation,
 });
 
 // graphql query
@@ -190,6 +265,22 @@ module.exports = new GraphQLSchema({
     }
   }
 }
+------------------------------------
+mutation{
+  addAuthor(id:5,name:"Sudha Murty",age:60){
+    name
+    age
+  }
+}
+
+------------------------------------  Mutation (Add Book) ---------------
+
+mutation{
+  addBook(id:4,name:"Three Thousand Stitches",category:"Inspirational",authorId:"5"){
+    name
+  }
+}
+
 
 
 

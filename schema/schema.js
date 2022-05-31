@@ -177,6 +177,12 @@ const RootQuery = new GraphQLObjectType({
         return authorsList;
       },
     },
+    books: {
+      type: new GraphQLList(BookType),
+      resolve(parent, args) {
+        return booksList;
+      },
+    },
     course: {
       type: CourseType,
       args: { id: { type: GraphQLID } },

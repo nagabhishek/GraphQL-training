@@ -1,4 +1,5 @@
 const graphql = require('graphql');
+const { GraphQLNonNull } = require('graphql/type');
 
 const {
   GraphQLObjectType,
@@ -98,8 +99,8 @@ const authorsList = [
 const CourseType = new GraphQLObjectType({
   name: 'Course',
   fields: () => ({
-    id: { type: GraphQLID },
-    title: { type: GraphQLString },
+    id: { type: new GraphQLNonNull(GraphQLID) },
+    title: { type: new GraphQLNonNull(GraphQLString) },
     price: { type: GraphQLInt },
     rating: { type: GraphQLInt },
     rating: { type: GraphQLInt },

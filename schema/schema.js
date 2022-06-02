@@ -271,7 +271,6 @@ module.exports = new GraphQLSchema({
 });
 
 // graphql query
-
 /*
 --------------------------Book with id-------------------------------
 {
@@ -329,12 +328,10 @@ mutation{
     age
   }
 }
-
 --------------------------Mutation (Add Book)-----------------------
 mutation{
   addBook(id:4,name:"Three Thousand Stitches",category:"Inspirational",authorId:"5"){
     name
   }
 }
-
 */
